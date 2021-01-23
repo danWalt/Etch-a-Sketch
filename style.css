@@ -4,9 +4,12 @@
   }
 
   #container {
+    margin: auto;
+    width: 30%;
+    padding: 10px;
     display: grid;
     grid-template-rows: repeat(var(--grid-rows), 1fr);
-    grid-template-columns: auto auto auto;
+    grid-template-columns: repeat(var(--grid-cols), 1fr);
   }
   
   .grid-item {
@@ -14,4 +17,17 @@
     border: 1px solid gray;
     text-align: center;
     
+  }
+
+  .headline {
+    text-align: center;
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+  }
+
+  .reset-button-div {
+    margin: auto;
+    text-align: center;
+
   }
