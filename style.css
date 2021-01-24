@@ -15,7 +15,6 @@
   .grid-item {
     padding: 1em;
     border: 1px solid gray;
-    text-align: center;
     
   }
 
@@ -29,5 +28,4 @@
   .reset-button-div {
     margin: auto;
     text-align: center;
-
   }

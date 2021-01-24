@@ -23,7 +23,7 @@ function insertAfter(newNode, referenceNode) {
     referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
 }
 
-const gridItems = document.querySelectorAll(".grid-item")
+let gridItems = document.querySelectorAll(".grid-item")
 window.addEventListener('mouseover', () => {
 gridItems.forEach(block => {
     let randomColor = Math.floor(Math.random()*16777215).toString(16);
@@ -39,16 +39,29 @@ resetDiv.className = 'reset-button-div'
 const resetButton = document.createElement('button')
 resetButton.textContent = 'Click Here to Reset'
 resetButton.className = 'reset-button'
-
-insertAfter(resetDiv, container)
-
 resetDiv.appendChild(resetButton)
+
+document.body.insertBefore(resetDiv, document.body.firstChild);
+
 
 
 resetButton.addEventListener('click', () => {
+    let gridSize = prompt('How many squares should build the grid?')
+    while (gridSize > 100 || gridSize < 1) {
+        gridSize = prompt('Please enter a number between 1 and 100')
+    }
     gridItems.forEach(block => {
-        block.style.backgroundColor = 'white';
+        block.remove()
     })
+    makeRows(gridSize, gridSize)
+    gridItems = document.querySelectorAll(".grid-item")
+
+
+
 })
+
+
+
+
 
 })()
