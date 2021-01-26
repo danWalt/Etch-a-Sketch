@@ -1,8 +1,21 @@
+body {
+  background-color: teal;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+  
+  
   #container {
+    border-color: black;
+    background-color: white;
     margin: auto;
-    width: 576px;
-    height: 576px;
+    width: 800px;
+    height: 800px;
     display: grid;
+    grid-gap: 1px;
   }
   
   .grid-item {

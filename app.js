@@ -16,41 +16,37 @@ resetButton.className = 'reset-button'
 resetDiv.appendChild(resetButton)
 
 document.body.insertBefore(resetDiv, document.body.firstChild);
-let gridItems = document.querySelectorAll(".grid-item")
 
-window.addEventListener('mouseover', () => {
-    gridItems.forEach(block => {
-        let randomColor = Math.floor(Math.random()*16777215).toString(16);
-        block.addEventListener('mouseover',() => {
-            block.style.backgroundColor = "#" + randomColor;
-            })
-        })
-    })
+  
+function makeGrid(size){
+    let gridArea = size * size;
+    for (let index = 0; index < gridArea; index++) {
+        let gridItem = document.createElement('div')
+        gridItem.style.borderColor = 'gray'
+        container.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+        container.style.gridTemplateRows = `repeat(${size}, 1fr)`;
+        container.insertAdjacentElement('beforeend', gridItem);      
+    }
 
+    var gridPixels = container.querySelectorAll('div');
+    gridPixels.forEach(gridPixel => gridPixel.addEventListener('mouseover', colorGrid));
+}
+
+function colorGrid(){
+    let randomColor = Math.floor(Math.random()*16777215).toString(16);
+    this.style.backgroundColor = "#" + randomColor;
+}
 
 resetButton.addEventListener('click', () => {
     let gridSize = prompt('How many squares should build the grid?')
     while (gridSize > 100 || gridSize < 1) {
         gridSize = prompt('Please enter a number between 1 and 100')
     }
-    gridItems.forEach(block => {
-        block.remove()
-    })
+    let gridPixels = container.querySelectorAll('div');
+    gridPixels.forEach(gridPixel => gridPixel.remove());
     
-
     makeGrid(gridSize)
-    gridItems = document.querySelectorAll(".grid-item")
-    
 })
-    
-function makeGrid(size){
-    container.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
-    for (let index = 0; index < size*size; index++) {
-        let block = document.createElement('div')
-        let blockSize = (576/size) - 1
-        block.style.width = blockSize +'px';
-        block.style.height = blockSize +'px';
-        container.appendChild(block).className = "grid-item";      
-    }
-}
+  
 })()
+
